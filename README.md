@@ -16,10 +16,6 @@ Experimental results demonstrate that our model significantly outperforms baseli
   <em>Figure 1: The overall architecture of the proposed HSK-LLM framework.</em>
 </p>
 
-## 🚀 News
-* **[2024-02]** Code and pretrained weights are released!
-* **[2024-0X]** Paper is accepted by [Conference/Journal Name].
-
 ## 🛠️ Installation
 
 ```bash
