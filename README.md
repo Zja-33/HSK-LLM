@@ -11,7 +11,7 @@ To address these issues, this paper proposes a **Hierarchical Spatial Knowledge-
 Experimental results demonstrate that our model significantly outperforms baselines, while effectively adhering to complex semantic instructions and explicit geometric constraints.
 
 <p align="center">
-  <img src="assets/framework.png" width="800" title="HSK-LLM Framework">
+  <img src="assets/framework.svg" width="800" title="HSK-LLM Framework">
   <br>
   <em>Figure 1: The overall architecture of the proposed HSK-LLM framework.</em>
 </p>
@@ -19,6 +19,6 @@ Experimental results demonstrate that our model significantly outperforms baseli
 ## 🛠️ Installation
 
 ```bash
-git clone [https://github.com/your-username/HSK-LLM.git](https://github.com/your-username/HSK-LLM.git)
+git clone [https://github.com/Zja-33/HSK-LLM.git](https://github.com/Zja-33/HSK-LLM.git)
 cd HSK-LLM
 pip install -r requirements.txt
