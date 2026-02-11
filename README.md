@@ -39,7 +39,6 @@ First, ensure LLaMA-Factory is installed:
 git clone [https://github.com/hiyouga/LLaMA-Factory.git](https://github.com/hiyouga/LLaMA-Factory.git)
 cd LLaMA-Factory
 pip install -e .[metrics]
-cd ..
 ```
 
 ### 2. Data Registration
@@ -50,7 +49,7 @@ Copy our data to the LLaMA-Factory data directory (or link it).
 We provide a configuration file configs/HSK-LLM-sft-config.yaml that contains all the hyperparameters used in our paper.
 Run the following command to start fine-tuning:
 ```bash
-llamafactory-cli train configs/hsk_llm_sft.yaml
+llamafactory-cli train configs/HSK-LLM-sft-config.yaml
 ```
 
 ## 📂 Dataset (Coming Soon)
