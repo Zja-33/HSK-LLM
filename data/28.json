@@ -1,0 +1,192 @@
+{
+  "input": "Role & Objective\nYou are an expert AI Architect capable of understanding spatial layouts. \nYour task is to generate a residential floor plan in JSON format based on the user's semantic description and structural constraints.\n\nCoordinate System Rules\n1.Grid:All coordinates must be integers within the [0, 255] grid.\n2.Axis:The coordinate system is image-based(Origin at Top-Left):Y-axis points Down, X-axis points Right.\n3.Direction:North (Up):Y value decreases.South (Down):Y value increases.East (Right):X value increases.West (Left):X value decreases.\n4.Bounds:Generated coordinates must strictly stay within the provided [0, 255] canvas and the specified Boundary Outline.\n\nTopology & Geometry Rules\n1.Anchor:The living room is the central anchor.In the overall layout,all other room positions (North, South, etc.) are relative to it.\n2.Connectivity:No isolated rooms allowed. Every room must share at least one edge with another room.Rooms defined as adjacent in the input must share a boundary.Rooms without adjacent relationships do not share a boundary.\n3.Polygon:The generated polygon must have no self intersection. All edges (walls) should be aligned with the axis (horizontal or vertical).\n4.Alignment:Shared edges between adjacent rooms must align perfectly (no gaps).\n5.Mutually Exclusive: The interiors of any two room polygons must be strictly disjoint. Boundaries can touch, but areas cannot overlap.\n6.Tiling(NO GAPS):All rooms must fit strictly within the Boundary Outline Constraint Polygon.The Union of all room polygons must exactly equal the geometry of the Boundary Polygon.There must be no void spaces or unassigned areas inside the boundary.\n\nOutput Format\nReturn ONLY a JSON list, where each element represents a room:\n[\n  { \"room\": \"living room\", \"boundary\": [[x1, y1], [x2, y2], ...] },\n  { \"room\": \"kitchen\", \"boundary\": [...] }\n]\n\nUser Description\nDesign a floor plan with a total of 7 rooms, comprising: 1 master room, 1 bathroom, 1 living room, 1 common room, 1 kitchen, 2 balcony.The total area is 85.91 sqm.\nThe master room is located on the South-West side and requires approximately 21.6 sqm.\nThe bathroom is located on the West side and requires approximately 2.97 sqm.\nThe living room is the central anchor and requires approximately 37.28 sqm.\nThe common room is located on the North-West side and requires approximately 10.57 sqm.\nThe kitchen is located on the North-East side and requires approximately 4.56 sqm.\nThe balcony 1 is located on the North-East side and requires approximately 2.99 sqm.\nThe balcony 2 is located on the South-West side and requires approximately 5.94 sqm.\nLocal Zone Layout (Fine-grained):Inside the South-West Zone,master room is located to the North of balcony 2.Inside the North-East Zone,balcony 1 is located to the North of kitchen.\n\nConstraints\n1.Boundary Outline Constraint:\nThe entire layout must fit strictly within this polygon: [[165,54],[105,54],[65,54],[65,101],[65,123],[65,183],[63,183],[63,205],[111,205],[111,183],[108,183],[108,159],[143,159],[171,159],[171,151],[192,151],[192,103],[192,73],[193,73],[193,54],[165,54]]\nYou must partition the entire space.Total Room Area ≈ 85.91 sqm.Every pixel inside the outline must be assigned to a room.No gaps are allowed between the polygons of the room.\n2.Adjacency Constraint:\nThe following pairs MUST share a physical wall segment (Edge Length>0):(master room, bathroom), (master room, living room), (master room, balcony 2), (bathroom, living room), (bathroom, common room), (living room, common room), (living room, kitchen), (living room, balcony 1), (kitchen, balcony 1)\nPoint-only contact (Vertex Touching) is FORBIDDEN. They must share a line.\nAny pair NOT listed above implies NO RELATIONSHIP.They must be physically separated (no shared edges).\n3.Bounding Box Geometric Constraints:\nBounding Box Definition:A Bounding Box (BBox) is the minimal axis-aligned rectangle [min_x, min_y, max_x, max_y] that fully encloses a room's polygon.It represents the room's maximum spatial territory.\nContainment Constraint:\nContainment Relations (Container, Contained):(living room, kitchen)\nIf Listed (A, B):Room A's BBox MUST strictly enclose Room B's BBox. \nLogic: A.min_x <= B.min_x AND A.max_x >= B.max_x (Same for Y).Room B is essentially inside the span of Room A.\nIntersection Constraint:\nIntersection Relations (Box Overlap):(living room, master room), (common room, living room), (balcony 1, living room)\nIf Listed (A, B):Their BBoxes MUST have a intersection area > 0.Intersection(Box(A), Box(B)).Area > 0.\nNote: Bounding boxes MAY overlap, but the actual room polygon areas must be STRICTLY DISJOINT.\n",
+  "output": [
+    {
+      "room": "master room",
+      "boundary": [
+        [
+          108,
+          183
+        ],
+        [
+          108,
+          159
+        ],
+        [
+          143,
+          159
+        ],
+        [
+          143,
+          123
+        ],
+        [
+          65,
+          123
+        ],
+        [
+          65,
+          183
+        ]
+      ]
+    },
+    {
+      "room": "bathroom",
+      "boundary": [
+        [
+          65,
+          101
+        ],
+        [
+          65,
+          123
+        ],
+        [
+          89,
+          123
+        ],
+        [
+          89,
+          101
+        ]
+      ]
+    },
+    {
+      "room": "living room",
+      "boundary": [
+        [
+          171,
+          151
+        ],
+        [
+          192,
+          151
+        ],
+        [
+          192,
+          103
+        ],
+        [
+          165,
+          103
+        ],
+        [
+          165,
+          54
+        ],
+        [
+          105,
+          54
+        ],
+        [
+          105,
+          101
+        ],
+        [
+          89,
+          101
+        ],
+        [
+          89,
+          123
+        ],
+        [
+          143,
+          123
+        ],
+        [
+          143,
+          159
+        ],
+        [
+          171,
+          159
+        ]
+      ]
+    },
+    {
+      "room": "common room",
+      "boundary": [
+        [
+          65,
+          54
+        ],
+        [
+          65,
+          101
+        ],
+        [
+          105,
+          101
+        ],
+        [
+          105,
+          54
+        ]
+      ]
+    },
+    {
+      "room": "kitchen",
+      "boundary": [
+        [
+          192,
+          73
+        ],
+        [
+          165,
+          73
+        ],
+        [
+          165,
+          103
+        ],
+        [
+          192,
+          103
+        ]
+      ]
+    },
+    {
+      "room": "balcony 1",
+      "boundary": [
+        [
+          193,
+          73
+        ],
+        [
+          193,
+          54
+        ],
+        [
+          165,
+          54
+        ],
+        [
+          165,
+          73
+        ]
+      ]
+    },
+    {
+      "room": "balcony 2",
+      "boundary": [
+        [
+          63,
+          183
+        ],
+        [
+          63,
+          205
+        ],
+        [
+          111,
+          205
+        ],
+        [
+          111,
+          183
+        ]
+      ]
+    }
+  ]
+}

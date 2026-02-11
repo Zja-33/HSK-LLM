@@ -1,5 +1,9 @@
 # HSK-LLM: Hierarchical Spatial Knowledge-Guided Large Language Models for Floor Plan Generation
-
+<p align="center">
+  <img src="assets/sample_talk.svg" width="800" title="HSK-LLM">
+  <br>
+  <em>Figure 1:  Overview of the floor plan generation pipeline.</em>
+</p>
 ## 🏠 Abstract
 
 To effectively explore automated generation of floor plans in the architecture industry, some remarkable progress in such a novel feasible paradigm for transforming floor plan design into natural language generation tasks, especially large language models have been witnessed during these years. However, existing methods still face significant challenges in this task, primarily manifested in the lack of effective semantic representations and the difficulty in strictly satisfying complex spatial and geometric constraints, resulting in sub-optimal generation quality. 
@@ -13,7 +17,7 @@ Experimental results demonstrate that our model significantly outperforms baseli
 <p align="center">
   <img src="assets/framework.svg" width="800" title="HSK-LLM Framework">
   <br>
-  <em>Figure 1: The overall architecture of the proposed HSK-LLM framework.</em>
+  <em>Figure 2: The overall architecture of the proposed HSK-LLM framework.</em>
 </p>
 
 ## 🛠️ Installation
