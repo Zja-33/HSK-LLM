@@ -37,12 +37,12 @@ First, ensure LLaMA-Factory is installed:
 
 ```bash
 git clone [https://github.com/hiyouga/LLaMA-Factory.git](https://github.com/hiyouga/LLaMA-Factory.git)
-cd LLaMA-Factory
+cd external/LLaMA-Factory
 pip install -e .[metrics]
 ```
 
 ### 2. Data Registration
-To use our dataset with LLaMA-Factory, you need to register it in data/dataset_info.json.
+To use our dataset with LLaMA-Factory, you need to register it in external/LLaMA-Factory/data/dataset_info.json.
 Copy our data to the LLaMA-Factory data directory (or link it).
 
 ### 3. Start Training
@@ -56,3 +56,11 @@ llamafactory-cli train configs/HSK-LLM-sft-config.yaml
 The full dataset and data processing pipeline will be made publicly available
 We have provided several sample data in the data/ directory.
 The img_sample/ directory contains comparison images of predicted floor plans and actual floor plans derived from example data.
+<p align="center">
+  <img src="img_sample/13_vs.png" width="400" title="sample_13">
+  <img src="img_sample/28_vs.png" width="400" title="sample_28">
+  <br>
+  <em>Figure 3: Inference comparison chart corresponding to example data.</em>
+</p>
+
+##
